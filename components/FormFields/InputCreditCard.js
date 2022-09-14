@@ -9,9 +9,8 @@ export const InputCreditCard = ({}) => {
       <div className="flex items-center max-w-[100%] border border-neutral-200 h-48 p-12 rounded-t-project">
         <span className="text-neutral-500">{lock_icon}</span>
         <Controller
-          name="phone"
+          name="ccNumber"
           control={control}
-          defaultValue=""
           rules={{
             required: true,
           }}
@@ -34,17 +33,38 @@ export const InputCreditCard = ({}) => {
             </MaskedInput>
           )}
         />
-        <input
-          name="cc-exp"
-          id="cc-exp"
-          className=" w-0 flex-1 shrink outline-none text-paragraph-small placeholder:text-neutral-500 text-neutral-900 text-right"
-          placeholder="MM/YY"
+        <Controller
+          name="ccExp"
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field }) => (
+            <MaskedInput
+              mask="99/99"
+              maskChar=""
+              value={field.value}
+              onChange={field.onChange}
+            >
+              {(inputProps) => (
+                <input
+                  {...inputProps}
+                  name="cc-exp"
+                  id="cc-exp"
+                  className=" w-0 flex-1 shrink outline-none text-paragraph-small placeholder:text-neutral-500 text-neutral-900"
+                  placeholder="MM/YY"
+                  maxLength={5}
+                />
+              )}
+            </MaskedInput>
+          )}
         />
         <input
           name="cc-cvc"
           id="cc-cvc"
           className=" w-0 flex-1 shrink outline-none text-paragraph-small placeholder:text-neutral-500 text-neutral-900 text-right"
           placeholder="CVC"
+          maxLength={3}
         />
       </div>
       <ControlledInput name="cc-name" label="Navn på kortet*" />

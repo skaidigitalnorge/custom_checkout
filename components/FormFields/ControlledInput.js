@@ -28,7 +28,6 @@ export const ControlledInput = ({
           <Input
             {...register(name, validators)}
             type={type}
-            // className={className}
             onChange={onChange}
             onBlur={onBlur}
             value={value}

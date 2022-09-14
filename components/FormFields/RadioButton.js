@@ -4,31 +4,40 @@ export const RadioButton = ({
   children,
   name,
   value,
+  onChange,
+  onBlur,
+  ref,
   labelHeading,
   labelSubheading,
   rightHeading,
   rightSubheading,
+  isActive,
+  defaultChecked,
 }) => {
   const [isChecked, setIsChecked] = useState(true);
 
   return (
     <div
-      className={`flex flex-col p-16 border border-neutral-200 rounded-project  ${
-        isChecked && "border-2 border-primary-500"
+      className={`flex flex-col p-16 border-2 border-neutral-200  rounded-project  ${
+        isActive && "border-[2px] border-primary-500"
       }`}
     >
       <div className="flex ">
         <input
-          type="radio"
+          defaultChecked={defaultChecked}
+          onChange={onChange}
+          onBlur={onBlur}
+          value={value}
           name={name}
           id={value}
-          value={value}
-          className="mr-12 mt-6 w-18 h-18 flex self-start group accent-primary-500 peer"
+          ref={ref}
+          type="radio"
+          className="cursor-pointer mr-12 mt-6 w-18 h-18 flex self-start group accent-primary-500 peer"
         />
         <div className="flex flex-col grow">
           <label
             htmlFor={value}
-            className="text-paragraph-medium font-semibold mb-4 flex justify-between "
+            className="cursor-pointer text-paragraph-medium font-semibold mb-4 flex justify-between "
           >
             {labelHeading}
             {rightHeading && <span className="mb-8">{rightHeading}</span>}
@@ -39,7 +48,6 @@ export const RadioButton = ({
           </span>
         </div>
       </div>
-
       {children}
     </div>
   );

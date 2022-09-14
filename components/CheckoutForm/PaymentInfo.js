@@ -1,15 +1,19 @@
-import { Controller, useFormContext } from "react-hook-form";
-import MaskedInput from "react-input-mask";
+import { useFormContext } from "react-hook-form";
+import { ControlledRadioButton } from "../FormFields/ControlledRadioButton";
 import { InputCreditCard } from "../FormFields/InputCreditCard";
 
-import { RadioButton } from "../FormFields/RadioButton";
 import { FormHeading } from "../Typography/FormHeading";
 export const PaymentInfo = ({}) => {
+  const { watch } = useFormContext();
+  const watchPayment = watch("payment");
+
   return (
     <section className="mb-56">
       <FormHeading className="mb-24">Hvordan vil du betale?</FormHeading>
       <div className="flex flex-col gap-y-16">
-        <RadioButton
+        <ControlledRadioButton
+          defaultChecked
+          isActive={watchPayment === "card"}
           name="payment"
           value="card"
           labelHeading="Med kort"
@@ -17,15 +21,17 @@ export const PaymentInfo = ({}) => {
           rightHeading={klarna_logo}
         >
           <InputCreditCard />
-        </RadioButton>
-        <RadioButton
+        </ControlledRadioButton>
+        <ControlledRadioButton
+          isActive={watchPayment === "vipps"}
           name="payment"
           value="vipps"
           labelHeading="Med Vipps"
           labelSubheading="Du blir videresendt til Vipps-menyen etterpå"
           rightHeading={klarna_logo}
         />
-        <RadioButton
+        <ControlledRadioButton
+          isActive={watchPayment === "klarnaLater"}
           name="payment"
           value="klarnaLater"
           labelHeading="Senere med Klarna"
