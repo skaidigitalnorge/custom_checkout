@@ -18,9 +18,9 @@ export const RadioButton = ({
 
   return (
     <div
-      className={`flex flex-col p-16 border-2 border-neutral-200  rounded-project  ${
+      className={`flex flex-col p-16 border-2 border-neutral-200   rounded-project  ${
         isActive && "border-[2px] border-primary-500"
-      }`}
+      } ${!isActive && "hover:border-neutral-300"}`}
     >
       <div className="flex ">
         <input
@@ -40,7 +40,7 @@ export const RadioButton = ({
             className="cursor-pointer text-paragraph-medium font-semibold mb-4 flex justify-between "
           >
             {labelHeading}
-            {rightHeading && <span className="mb-8">{rightHeading}</span>}
+            {rightHeading && <span>{rightHeading}</span>}
           </label>
           <span className="text-paragraph-xsmall text-neutral-500 flex justify-between">
             {labelSubheading}

@@ -1,11 +1,14 @@
 import { useFormContext } from "react-hook-form";
 import { ControlledRadioButton } from "../FormFields/ControlledRadioButton";
+import { ControlledToggle } from "../FormFields/ControlledToggle";
 import { Toggle } from "../FormFields/Toggle";
 import { FormHeading } from "../Typography/FormHeading";
+import { InvoiceAddressInfo } from "./InvoiceAddressInfo";
 
 export const ShippingInfo = ({}) => {
   const { watch } = useFormContext();
   const watchPayment = watch("shipping");
+  const watchSameAddress = watch("sameAddress");
 
   return (
     <section className="mb-56">
@@ -30,9 +33,12 @@ export const ShippingInfo = ({}) => {
           rightHeading="kr 249"
           rightSubheading={posten_logo}
         />
-        <Toggle name="sameAddress">
-          Samme leverings- og faktureringsadresse
-        </Toggle>
+        <ControlledToggle
+          name="sameAddress"
+          label="Samme leverings- og faktureringsadresse"
+          checked
+        />
+        {watchSameAddress === false && <InvoiceAddressInfo />}
       </div>
     </section>
   );

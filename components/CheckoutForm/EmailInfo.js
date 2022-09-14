@@ -5,7 +5,11 @@ export const EmailInfo = ({}) => {
   return (
     <section className="mb-56">
       <FormHeading className="mb-24">Først. Hva er e-posten din?</FormHeading>
-      <div className="flex flex-col gap-y-16">
+      <div className="flex flex-col">
+        <button className="flex justify-end mb-8 text-paragraph-xsmall text-neutral-500">
+          Har du allerede en konto?{" "}
+          <span className="underline ml-4">Logg inn her.</span>
+        </button>
         <ControlledInput
           name="email"
           label="E-post*"

@@ -1,10 +1,12 @@
+import { m } from "framer-motion";
 import { useState } from "react";
-import { Input } from "../FormFields/Input";
-import { InputCountry } from "../FormFields/InputCountry";
-import { Toggle } from "../FormFields/Toggle";
-import { FormHeading } from "../Typography/FormHeading";
+import { fadeAnimation } from "../../lib/animations";
+
+import { ControlledCountrySelector } from "../FormFields/ControlledCountrySelector";
 import { ControlledInput } from "../FormFields/ControlledInput";
-import { SelectCountry } from "../FormFields/SelectCountry";
+import { ControlledPhoneNumberInput } from "../FormFields/ControlledPhoneNumberInput";
+import { ControlledToggle } from "../FormFields/ControlledToggle";
+import { FormHeading } from "../Typography/FormHeading";
 
 export const AddressInfo = () => {
   const [addFieldAddress2, setAddFieldAddress2] = useState(false);
@@ -14,7 +16,12 @@ export const AddressInfo = () => {
   };
 
   return (
-    <section className="mb-56">
+    <m.section
+      variants={fadeAnimation}
+      initial="hide"
+      animate="show"
+      className="mb-56"
+    >
       <FormHeading className="mb-24">Hvor skal vi sende varene?</FormHeading>
       <div className="flex flex-col gap-y-16">
         <ControlledInput
@@ -22,7 +29,7 @@ export const AddressInfo = () => {
           label="Name*"
           validators={{ required: "Hva er fornavnet ditt?" }}
         />
-        <SelectCountry />
+        <ControlledCountrySelector name="country" />
         <ControlledInput
           name="address1"
           label="Gateadresse*"
@@ -35,19 +42,30 @@ export const AddressInfo = () => {
         {addFieldAddress2 && (
           <ControlledInput name="address2" label="Leilighetnummer, o.l." />
         )}
-        <ControlledInput
-          name="zip"
-          label="Postnummer*"
-          validators={{ required: "Hva er postnummeret ditt?" }}
+        <div className="flex">
+          <div className="flex-1">
+            <ControlledInput
+              name="zip"
+              label="Postnummer*"
+              validators={{ required: "Hva er postnummeret ditt?" }}
+              // className="border-none"
+            />
+          </div>
+          <div className="flex-3">
+            <ControlledInput
+              name="city"
+              label="Sted*"
+              validators={{ required: "Hviken by bor du i?" }}
+            />
+          </div>
+        </div>
+        <ControlledPhoneNumberInput dialCodeName="dialCode" phoneName="phone" />
+        <ControlledToggle
+          name="createAccount"
+          label="Lagre infoen min til neste gang"
+          checked
         />
-        <ControlledInput
-          name="city"
-          label="Sted*"
-          validators={{ required: "Hviken by bor du i?" }}
-        />
-        <InputCountry />
-        <Toggle name="createAccount">Lagre infoen min til neste gang</Toggle>
       </div>
-    </section>
+    </m.section>
   );
 };

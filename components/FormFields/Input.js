@@ -18,6 +18,7 @@ export const Input = ({
   ref,
   error,
   helperText,
+  className,
 }) => {
   const [hasClickedButton, setHasClickedButton] = useState(false);
 
@@ -29,9 +30,9 @@ export const Input = ({
   return (
     <>
       <div
-        className={`flex items-center justify-between px-12 h-48 border-1 border-neutral-200 rounded-project hover:cursor-text focus-within:border-2 focus-within:border-primary-500 ${
+        className={`flex items-center justify-between px-12 h-48 border-1 border-neutral-200 hover(:not focus):border-neutral-300 rounded-project hover:cursor-text focus-within:border-2 focus-within:border-primary-500 ${
           error && "border-2 border-danger-500"
-        }`}
+        } ${className}`}
       >
         <div className="flex items-center  w-100%">
           {icon && <div className="w-20 h-20 mr-8 border-1">IC</div>}
@@ -41,11 +42,12 @@ export const Input = ({
               onBlur={onBlur}
               value={value}
               name={name}
+              autoComplete={name}
               id={name}
               ref={ref}
               type={type ? type : "text"}
               placeholder={placeholder ? placeholder : " "}
-              className=" mt-[-2px] text-paragraph-small block w-full appearance-none focus:outline-none focus:ring-0 peer translate-y-8"
+              className={`mt-[-2px] text-paragraph-small block w-full appearance-none focus:outline-none focus:ring-0 peer translate-y-8`}
             />
             <label
               htmlFor={name}
