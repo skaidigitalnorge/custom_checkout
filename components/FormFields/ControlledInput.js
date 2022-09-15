@@ -15,6 +15,7 @@ export const ControlledInput = ({
   rounded,
   errorStyling,
   autoCapitalize,
+  inputMode,
 }) => {
   const { register, control } = useFormContext();
 
@@ -43,6 +44,7 @@ export const ControlledInput = ({
             }
             hasButton={hasButton}
             autoCapitalize={autoCapitalize}
+            inputMode={inputMode}
             onClick={onClick}
             buttonText={buttonText}
             border={border}

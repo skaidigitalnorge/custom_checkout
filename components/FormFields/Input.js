@@ -22,6 +22,7 @@ export const Input = ({
   rounded,
   errorStyling,
   autoCapitalize,
+  inputMode,
 }) => {
   const [hasClickedButton, setHasClickedButton] = useState(false);
 
@@ -52,6 +53,7 @@ export const Input = ({
               name={name}
               autoComplete={name}
               autoCapitalize={autoCapitalize}
+              inputMode={inputMode}
               id={name}
               type={type ? type : "text"}
               placeholder={placeholder ? placeholder : " "}
