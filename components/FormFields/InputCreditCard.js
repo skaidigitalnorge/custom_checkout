@@ -51,7 +51,7 @@ export const InputCreditCard = ({ isActive }) => {
       exit="hide"
       className="flex flex-col"
     >
-      <div className="flex items-center max-w-[100%] border border-neutral-200 h-48 p-12 mt-8 rounded-t-project">
+      <div className="flex items-center max-w-[100%] border border-neutral-200 focus-within:border-primary-500 h-48 p-12 mt-8 rounded-t-project">
         <span className="text-neutral-500">
           {detectedCardProvider
             ? GetPaymentProviderIcon(detectedCardProvider)

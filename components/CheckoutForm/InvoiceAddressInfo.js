@@ -14,7 +14,7 @@ export const InvoiceAddressInfo = () => {
   return (
     <section className="mb-56">
       <FormHeading className="mb-24">Fakturaadresse</FormHeading>
-      <div className="flex flex-col gap-y-16">
+      <div className="flex flex-col">
         <ControlledInput
           name="givenName"
           label="Name*"
@@ -46,10 +46,12 @@ export const InvoiceAddressInfo = () => {
           label="Sted*"
           validators={{ required: "Hviken by bor du i?" }}
         />
-        <ControlledPhoneNumberInput
-          dialCodeName="invoiceDialCode"
-          phoneName="invoicePhone"
-        />
+        <div className="mt-16">
+          <ControlledPhoneNumberInput
+            dialCodeName="invoiceDialCode"
+            phoneName="invoicePhone"
+          />
+        </div>
       </div>
     </section>
   );

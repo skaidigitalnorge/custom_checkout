@@ -43,7 +43,7 @@ export const PaymentInfo = ({}) => {
           value="vipps"
           labelHeading="Med Vipps"
           labelSubheading="Du blir videresendt til Vipps-menyen etterpå"
-          rightHeading={klarna_logo}
+          rightHeading={GetPaymentProviderIcon("Vipps")}
         />
         <ControlledRadioButton
           isActive={watchPayment === "klarnaLater"}
@@ -51,7 +51,7 @@ export const PaymentInfo = ({}) => {
           value="klarnaLater"
           labelHeading="Senere med Klarna"
           labelSubheading="Du blir videresendt til Klarna-menyen etterpå"
-          rightHeading={klarna_logo}
+          rightHeading={GetPaymentProviderIcon("Klarna")}
         />
       </div>
     </section>
