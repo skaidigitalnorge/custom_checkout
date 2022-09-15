@@ -16,6 +16,7 @@ import { LineItem } from "../components/LineItem/LineItem";
 import { UpsellItem } from "../components/LineItem/UpsellItem";
 import { OrderSummary } from "../components/OrderSummary/OrderSummary";
 import { FormHeading } from "../components/Typography/FormHeading";
+import { serializeCheckoutData } from "../lib/helpers";
 
 // TODO Fikse at state håndteres riktig med react hook form med custom components
 // TODO Fikse focus og hover states for inputs
@@ -40,43 +41,9 @@ export default function Home() {
   const watchPhone = watch("phone");
 
   const onSubmit = (data) => {
-    const invoiceAddress = !data.sameAddress && {
-      name: data.name ?? "",
-      address1: data.invoiceAddress1 ?? "",
-      address2: data.invoiceAddress2 ?? "",
-      zip: data.invoiceZip ?? "",
-      city: data.invoiceCity ?? "",
-      country: data.invoiceCountry ?? "",
-      phone: data.invoiceDialCode + data.invoicePhone.replace(/\s/g, "") ?? "",
-    };
+    const formattedData = serializeCheckoutData(data);
 
-    const cardInfo = data.payment === "card" && {
-      ccNumber: data.ccNumber,
-      ccExp: data.ccExp,
-      ccCVC: data.ccCVC,
-    };
-
-    const serializedData = {
-      name: data.name ?? "",
-      email: data.email ?? "",
-
-      address1: data.address1 ?? "",
-      address2: data.address2 ?? "",
-      zip: data.zip ?? "",
-      city: data.city ?? "",
-      country: data.country ?? "",
-      phone: data.dialCode + data.phone.replace(/\s/g, "") ?? "",
-
-      payment: {
-        type: data.payment,
-        cardInfo,
-      },
-
-      invoiceAddress,
-      createAccount: data.createAccount,
-    };
-
-    console.log(serializedData);
+    console.log(formattedData);
   };
 
   return (
@@ -97,7 +64,6 @@ export default function Home() {
                   <SubmitButton>Fullfør bestilling</SubmitButton>
                 </>
               )}
-              <input type="submit" />
             </GridItem>
             <GridItem size="four-eight-four" className="lg:col-start-8">
               <div className="flex flex-col gap-y-24">

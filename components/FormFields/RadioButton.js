@@ -8,7 +8,6 @@ export const RadioButton = ({
   value,
   onChange,
   onBlur,
-  ref,
   labelHeading,
   labelSubheading,
   rightHeading,
@@ -32,7 +31,6 @@ export const RadioButton = ({
           value={value}
           name={name}
           id={value}
-          ref={ref}
           type="radio"
           className="cursor-pointer mr-12 mt-6 w-18 h-18 flex self-start group accent-primary-500 peer"
         />

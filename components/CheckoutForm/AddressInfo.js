@@ -34,6 +34,7 @@ export const AddressInfo = () => {
           name="name"
           label="Name*"
           validators={{ required: "Hva er fornavnet ditt?" }}
+          autoCapitalize="words"
         />
         <ControlledCountrySelector name="country" />
         <ControlledInput
@@ -50,7 +51,7 @@ export const AddressInfo = () => {
             <ControlledInput name="address2" label="Leilighetnummer, o.l." />
           </m.div>
         )}
-        <div className="flex mb-16">
+        <div className="md:flex mb-16">
           <div className="flex-1">
             <ControlledInput
               name="zip"

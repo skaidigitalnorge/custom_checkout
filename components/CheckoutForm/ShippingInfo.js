@@ -54,8 +54,8 @@ const posten_logo = (
     viewBox="0 0 150 40"
   >
     <g
-      inkscapeLabel="Layer 1"
-      inkscapeGroupmode="layer"
+      inkscapelabel="Layer 1"
+      inkscapegroupmode="layer"
       id="layer1"
       transform="translate(-121.2575,-455.31205)"
     >

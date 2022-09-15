@@ -49,7 +49,6 @@ export const ControlledPhoneNumberInput = ({ dialCodeName, phoneName }) => {
             defaultValue={defaultValue.value}
             render={({ field: { onChange, value, ref } }) => (
               <Select
-                inputRef={ref}
                 value={options.find((c) => c.name === "Norway")}
                 defaultValue={defaultValue}
                 onChange={(val) => onChange(val.value)}

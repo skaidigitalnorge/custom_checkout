@@ -16,12 +16,12 @@ export const Input = ({
   onChange,
   onBlur,
   value,
-  ref,
   error,
   helperText,
   border,
   rounded,
   errorStyling,
+  autoCapitalize,
 }) => {
   const [hasClickedButton, setHasClickedButton] = useState(false);
 
@@ -51,8 +51,8 @@ export const Input = ({
               value={value}
               name={name}
               autoComplete={name}
+              autoCapitalize={autoCapitalize}
               id={name}
-              ref={ref}
               type={type ? type : "text"}
               placeholder={placeholder ? placeholder : " "}
               className={`mt-[-2px] text-paragraph-small block w-full appearance-none focus:outline-none focus:ring-0 peer translate-y-8`}

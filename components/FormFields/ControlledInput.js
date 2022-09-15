@@ -14,6 +14,7 @@ export const ControlledInput = ({
   border,
   rounded,
   errorStyling,
+  autoCapitalize,
 }) => {
   const { register, control } = useFormContext();
 
@@ -41,6 +42,7 @@ export const ControlledInput = ({
               !fieldState.invalid ? "" : getInputHelperText(fieldState.error)
             }
             hasButton={hasButton}
+            autoCapitalize={autoCapitalize}
             onClick={onClick}
             buttonText={buttonText}
             border={border}

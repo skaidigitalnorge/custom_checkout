@@ -22,8 +22,6 @@ export const InputCreditCard = ({ isActive }) => {
       return;
     }
 
-    console.log("number", number);
-
     const firstTwo = number.slice(0, 2);
 
     if (number.charAt(0) === "4") {
@@ -60,6 +58,7 @@ export const InputCreditCard = ({ isActive }) => {
         <Controller
           name="ccNumber"
           control={control}
+          defaultValue=""
           rules={{
             required: isActive ? true : false,
           }}
@@ -89,6 +88,7 @@ export const InputCreditCard = ({ isActive }) => {
         <Controller
           name="ccExp"
           control={control}
+          defaultValue=""
           rules={{
             required: isActive ? true : false,
           }}
@@ -115,6 +115,7 @@ export const InputCreditCard = ({ isActive }) => {
         <Controller
           name="ccCVC"
           control={control}
+          defaultValue=""
           rules={{
             required: isActive ? true : false,
           }}
@@ -143,21 +144,3 @@ export const InputCreditCard = ({ isActive }) => {
     </m.div>
   );
 };
-
-const lock_icon = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className="feather feather-lock mr-8"
-  >
-    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-  </svg>
-);
