@@ -80,6 +80,7 @@ export const InputCreditCard = ({ isActive }) => {
                   id="cc-number"
                   className=" w-0 flex-3 shrink-0 outline-none text-paragraph-small placeholder:text-neutral-500 text-neutral-900"
                   placeholder="1234 1234 1234 1234"
+                  inputMode="numeric"
                 />
               )}
             </MaskedInput>
@@ -107,6 +108,7 @@ export const InputCreditCard = ({ isActive }) => {
                   className=" w-0 flex-1 shrink outline-none text-paragraph-small placeholder:text-neutral-500 text-neutral-900"
                   placeholder="MM/YY"
                   maxLength={5}
+                  inputMode="numeric"
                 />
               )}
             </MaskedInput>
@@ -134,6 +136,7 @@ export const InputCreditCard = ({ isActive }) => {
                   className=" w-0 flex-1 shrink outline-none text-paragraph-small placeholder:text-neutral-500 text-neutral-900 text-right"
                   placeholder="CVC"
                   maxLength={3}
+                  inputMode="numeric"
                 />
               )}
             </MaskedInput>

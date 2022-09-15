@@ -87,6 +87,7 @@ export const ControlledPhoneNumberInput = ({ dialCodeName, phoneName }) => {
                     name="tel"
                     id="tel"
                     placeholder="123 123 12"
+                    inputMode="numeric"
                     className="grow outline-none text-paragraph-small text-neutral-900 placeholder:text-neutral-500"
                   />
                 )}
