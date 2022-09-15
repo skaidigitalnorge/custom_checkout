@@ -37,6 +37,7 @@ export const ShippingInfo = ({}) => {
           name="sameAddress"
           label="Samme leverings- og faktureringsadresse"
           checked
+          defaultValue={true}
         />
         {watchSameAddress === false && <InvoiceAddressInfo />}
       </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
+import { AddFieldButton } from "./AddFieldButton";
 
 export const Input = ({
   type,
@@ -18,7 +19,9 @@ export const Input = ({
   ref,
   error,
   helperText,
-  className,
+  border,
+  rounded,
+  errorStyling,
 }) => {
   const [hasClickedButton, setHasClickedButton] = useState(false);
 
@@ -30,9 +33,14 @@ export const Input = ({
   return (
     <>
       <div
-        className={`flex items-center justify-between px-12 h-48 border-1 border-neutral-200 hover(:not focus):border-neutral-300 rounded-project hover:cursor-text focus-within:border-2 focus-within:border-primary-500 ${
-          error && "border-2 border-danger-500"
-        } ${className}`}
+        className={`flex items-center justify-between px-12 h-48 mt-16 hover(:not focus):border-neutral-300  hover:cursor-text focus-within:border-primary-500 ${
+          error && errorStyling
+            ? errorStyling
+            : error && "border-1 border-danger-500"
+        } 
+        ${border ? border : "border-1 border-neutral-200"}
+          ${rounded ? rounded : "rounded-project"}
+        `}
       >
         <div className="flex items-center  w-100%">
           {icon && <div className="w-20 h-20 mr-8 border-1">IC</div>}
@@ -58,16 +66,11 @@ export const Input = ({
           </div>
         </div>
         {hasButton && !hasClickedButton && (
-          <button
-            className="text-paragraph-xsmall text-neutral-500 flex shrink-0"
-            onClick={handleClick}
-          >
-            {buttonText} +
-          </button>
+          <AddFieldButton onClick={handleClick}>{buttonText}</AddFieldButton>
         )}
       </div>
       {error && helperText && (
-        <span className="text-paragraph-xsmall font-semibold text-danger-500 mt-[-12px]">
+        <span className="text-paragraph-xsmall font-semibold text-danger-500">
           {helperText}
         </span>
       )}

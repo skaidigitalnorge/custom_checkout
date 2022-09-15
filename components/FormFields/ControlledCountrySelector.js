@@ -24,6 +24,7 @@ export const ControlledCountrySelector = ({ name }) => {
     <Controller
       control={control}
       name={name}
+      defaultValue={defaultValue.value}
       render={({ field: { onChange, value, ref } }) => (
         <Select
           inputRef={ref}
@@ -31,7 +32,7 @@ export const ControlledCountrySelector = ({ name }) => {
           defaultValue={defaultValue}
           onChange={(val) => onChange(val.value)}
           options={options}
-          className="z-[200] text-paragraph-small text-neutral-900"
+          className="z-[200] text-paragraph-small text-neutral-900 mt-16"
           styles={customStyles}
         />
       )}

@@ -7,6 +7,7 @@ export const ControlledToggle = ({
   validators,
   placeholder,
   checked,
+  defaultValue,
 }) => {
   const { register, control } = useFormContext();
 
@@ -14,6 +15,7 @@ export const ControlledToggle = ({
     <Controller
       control={control}
       name={name}
+      defaultValue={defaultValue}
       render={({ field: { onChange, onBlur, value, name }, fieldState }) => {
         return (
           <Toggle

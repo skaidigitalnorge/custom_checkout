@@ -1,4 +1,6 @@
+import { AnimatePresence, domAnimation } from "framer-motion";
 import { useFormContext } from "react-hook-form";
+import { GetPaymentProviderIcon } from "../../lib/getPaymentProviderIcon";
 import { ControlledRadioButton } from "../FormFields/ControlledRadioButton";
 import { InputCreditCard } from "../FormFields/InputCreditCard";
 
@@ -16,11 +18,24 @@ export const PaymentInfo = ({}) => {
           isActive={watchPayment === "card"}
           name="payment"
           value="card"
-          labelHeading="Med kort"
+          labelHeading={
+            <span className="flex items-center">
+              Med kort <span className="text-neutral-500">{lock_icon}</span>
+            </span>
+          }
           labelSubheading="Sikker betaling via Stripe"
-          rightHeading={klarna_logo}
+          rightHeading={
+            <div className="flex">
+              {GetPaymentProviderIcon("Visa")}
+              {GetPaymentProviderIcon("MasterCard")}
+            </div>
+          }
         >
-          <InputCreditCard />
+          <AnimatePresence features={domAnimation}>
+            {watchPayment === "card" && (
+              <InputCreditCard isActive={watchPayment === "card"} />
+            )}
+          </AnimatePresence>
         </ControlledRadioButton>
         <ControlledRadioButton
           isActive={watchPayment === "vipps"}
@@ -42,6 +57,24 @@ export const PaymentInfo = ({}) => {
     </section>
   );
 };
+
+const lock_icon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="feather feather-lock ml-8"
+  >
+    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+  </svg>
+);
 
 const klarna_logo = (
   <svg

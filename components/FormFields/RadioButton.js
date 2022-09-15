@@ -1,4 +1,6 @@
+import { m } from "framer-motion";
 import { useState } from "react";
+import { autoHeightAnimation } from "../../lib/animations";
 
 export const RadioButton = ({
   children,
@@ -37,18 +39,25 @@ export const RadioButton = ({
         <div className="flex flex-col grow">
           <label
             htmlFor={value}
-            className="cursor-pointer text-paragraph-medium font-semibold mb-4 flex justify-between "
+            className="cursor-pointer text-paragraph-medium font-semibold mb-4 flex justify-between items-center"
           >
             {labelHeading}
             {rightHeading && <span>{rightHeading}</span>}
           </label>
-          <span className="text-paragraph-xsmall text-neutral-500 flex justify-between">
+          <span className="text-paragraph-xsmall text-neutral-500 flex justify-between items-center">
             {labelSubheading}
             {rightSubheading && <span>{rightSubheading}</span>}
           </span>
         </div>
       </div>
-      {children}
+      <m.div
+        variants={autoHeightAnimation}
+        initial="hide"
+        animate="show"
+        exit="hide"
+      >
+        {children}
+      </m.div>
     </div>
   );
 };

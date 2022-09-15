@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AddFieldButton } from "../FormFields/AddFieldButton";
 
 export const OrderSummary = ({}) => {
   // TODO fin plass å teste useReducer
@@ -40,12 +41,7 @@ const Total = ({ onClick, hideButton }) => {
           kr 2 249
         </span>
         {!hideButton && (
-          <button
-            className="text-paragraph-xsmall text-neutral-500"
-            onClick={onClick}
-          >
-            Legg til rabattkode +
-          </button>
+          <AddFieldButton onClick={onClick}>Legg til rabattkode</AddFieldButton>
         )}
       </div>
     </div>

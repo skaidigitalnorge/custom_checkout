@@ -11,7 +11,9 @@ export const ControlledInput = ({
   onClick,
   buttonText,
   placeholder,
-  className,
+  border,
+  rounded,
+  errorStyling,
 }) => {
   const { register, control } = useFormContext();
 
@@ -41,7 +43,9 @@ export const ControlledInput = ({
             hasButton={hasButton}
             onClick={onClick}
             buttonText={buttonText}
-            className={className}
+            border={border}
+            rounded={rounded}
+            errorStyling={errorStyling}
           />
         );
       }}

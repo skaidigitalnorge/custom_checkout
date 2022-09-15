@@ -3,6 +3,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { AddressInfo } from "../components/CheckoutForm/AddressInfo";
 import { EmailInfo } from "../components/CheckoutForm/EmailInfo";
 import { PaymentInfo } from "../components/CheckoutForm/PaymentInfo";
+import { ProgressIndicator } from "../components/CheckoutForm/ProgressIndicator";
 import { ShippingInfo } from "../components/CheckoutForm/ShippingInfo";
 import { Container } from "../components/Container/Container";
 import { Input } from "../components/FormFields/Input";
@@ -48,7 +49,9 @@ export default function Home() {
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Grid>
             <GridItem size="four-eight-four" className="mb-56 lg:col-start-2">
-              <input type="submit" />
+              <div className="mb-32">
+                <ProgressIndicator />
+              </div>
               <EmailInfo />
               {watchEmail != undefined && <AddressInfo />}
               {watchPhone != undefined && watchPhone != "" && (
@@ -58,6 +61,7 @@ export default function Home() {
                   <SubmitButton>Fullfør bestilling</SubmitButton>
                 </>
               )}
+              <input type="submit" />
             </GridItem>
             <GridItem size="four-eight-four" className="lg:col-start-8">
               <div className="flex flex-col gap-y-24">

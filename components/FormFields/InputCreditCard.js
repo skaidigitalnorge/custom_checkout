@@ -1,22 +1,75 @@
+import { m } from "framer-motion";
 import { Controller, useFormContext } from "react-hook-form";
 import MaskedInput from "react-input-mask";
 import { ControlledInput } from "./ControlledInput";
-export const InputCreditCard = ({}) => {
-  const { control } = useFormContext();
+import { autoHeightAnimation } from "../../lib/animations";
+import { useEffect, useState } from "react";
+import Icon from "../Icon/Icon";
+import { GetPaymentProviderIcon } from "../../lib/getPaymentProviderIcon";
+
+export const InputCreditCard = ({ isActive }) => {
+  const [detectedCardProvider, setDetectedCardProvider] = useState(null);
+
+  const { control, watch } = useFormContext();
+  const watchCCNumber = watch("ccNumber");
+
+  useEffect(() => {
+    setPaymentProviderByCreditCardNumber(watchCCNumber);
+  }, [watchCCNumber]);
+
+  const setPaymentProviderByCreditCardNumber = (number) => {
+    if (!number) {
+      return;
+    }
+
+    console.log("number", number);
+
+    const firstTwo = number.slice(0, 2);
+
+    if (number.charAt(0) === "4") {
+      return setDetectedCardProvider("Visa");
+    }
+    if (firstTwo === "34" || firstTwo === "37") {
+      return setDetectedCardProvider("AMEX");
+    }
+    if (
+      firstTwo === "51" ||
+      firstTwo === "52" ||
+      firstTwo === "53" ||
+      firstTwo === "54" ||
+      firstTwo === "55"
+    ) {
+      return setDetectedCardProvider("MasterCard");
+    }
+  };
 
   return (
-    <div className="flex flex-col">
-      <div className="flex items-center max-w-[100%] border border-neutral-200 h-48 p-12 rounded-t-project">
-        <span className="text-neutral-500">{lock_icon}</span>
+    <m.div
+      variants={autoHeightAnimation}
+      initial="hide"
+      animate="show"
+      exit="hide"
+      className="flex flex-col"
+    >
+      <div className="flex items-center max-w-[100%] border border-neutral-200 h-48 p-12 mt-8 rounded-t-project">
+        <span className="text-neutral-500">
+          {detectedCardProvider
+            ? GetPaymentProviderIcon(detectedCardProvider)
+            : GetPaymentProviderIcon("Generic")}
+        </span>
         <Controller
           name="ccNumber"
           control={control}
           rules={{
-            required: true,
+            required: isActive ? true : false,
           }}
           render={({ field }) => (
             <MaskedInput
-              mask="9999 9999 9999 9999"
+              mask={
+                detectedCardProvider === "AMEX"
+                  ? "9999 999999 99999"
+                  : "9999 9999 9999 9999"
+              }
               maskChar=""
               value={field.value}
               onChange={field.onChange}
@@ -37,7 +90,7 @@ export const InputCreditCard = ({}) => {
           name="ccExp"
           control={control}
           rules={{
-            required: true,
+            required: isActive ? true : false,
           }}
           render={({ field }) => (
             <MaskedInput
@@ -59,16 +112,35 @@ export const InputCreditCard = ({}) => {
             </MaskedInput>
           )}
         />
-        <input
-          name="cc-cvc"
-          id="cc-cvc"
-          className=" w-0 flex-1 shrink outline-none text-paragraph-small placeholder:text-neutral-500 text-neutral-900 text-right"
-          placeholder="CVC"
-          maxLength={3}
+        <Controller
+          name="ccCVC"
+          control={control}
+          rules={{
+            required: isActive ? true : false,
+          }}
+          render={({ field }) => (
+            <MaskedInput
+              mask="999"
+              maskChar=""
+              value={field.value}
+              onChange={field.onChange}
+            >
+              {(inputProps) => (
+                <input
+                  {...inputProps}
+                  name="cc-cvc"
+                  id="cc-cvc"
+                  className=" w-0 flex-1 shrink outline-none text-paragraph-small placeholder:text-neutral-500 text-neutral-900 text-right"
+                  placeholder="CVC"
+                  maxLength={3}
+                />
+              )}
+            </MaskedInput>
+          )}
         />
       </div>
       <ControlledInput name="cc-name" label="Navn på kortet*" />
-    </div>
+    </m.div>
   );
 };
 

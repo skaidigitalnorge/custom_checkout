@@ -6,7 +6,7 @@ export const EmailInfo = ({}) => {
     <section className="mb-56">
       <FormHeading className="mb-24">Først. Hva er e-posten din?</FormHeading>
       <div className="flex flex-col">
-        <button className="flex justify-end mb-8 text-paragraph-xsmall text-neutral-500">
+        <button className="flex justify-end text-paragraph-xsmall text-neutral-500 mb-[-8px]">
           Har du allerede en konto?{" "}
           <span className="underline ml-4">Logg inn her.</span>
         </button>

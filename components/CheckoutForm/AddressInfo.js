@@ -1,6 +1,7 @@
 import { m } from "framer-motion";
 import { useState } from "react";
-import { fadeAnimation } from "../../lib/animations";
+import { autoHeightAnimation, fadeAnimation } from "../../lib/animations";
+import { AddFieldButton } from "../FormFields/AddFieldButton";
 
 import { ControlledCountrySelector } from "../FormFields/ControlledCountrySelector";
 import { ControlledInput } from "../FormFields/ControlledInput";
@@ -10,9 +11,14 @@ import { FormHeading } from "../Typography/FormHeading";
 
 export const AddressInfo = () => {
   const [addFieldAddress2, setAddFieldAddress2] = useState(false);
+  const [addFieldCompany, setAddFieldCompany] = useState(false);
 
   const handleAddAddress2 = () => {
     setAddFieldAddress2(true);
+  };
+
+  const handleAddCompany = () => {
+    setAddFieldCompany(true);
   };
 
   return (
@@ -23,7 +29,7 @@ export const AddressInfo = () => {
       className="mb-56"
     >
       <FormHeading className="mb-24">Hvor skal vi sende varene?</FormHeading>
-      <div className="flex flex-col gap-y-16">
+      <div className="flex flex-col">
         <ControlledInput
           name="name"
           label="Name*"
@@ -40,15 +46,19 @@ export const AddressInfo = () => {
         />
 
         {addFieldAddress2 && (
-          <ControlledInput name="address2" label="Leilighetnummer, o.l." />
+          <m.div variants={autoHeightAnimation} initial="hide" animate="show">
+            <ControlledInput name="address2" label="Leilighetnummer, o.l." />
+          </m.div>
         )}
-        <div className="flex">
+        <div className="flex mb-16">
           <div className="flex-1">
             <ControlledInput
               name="zip"
               label="Postnummer*"
               validators={{ required: "Hva er postnummeret ditt?" }}
-              // className="border-none"
+              border="border-b border-t border-l border-neutral-200"
+              errorStyling="border-danger-500"
+              rounded="rounded-l-project"
             />
           </div>
           <div className="flex-3">
@@ -56,15 +66,30 @@ export const AddressInfo = () => {
               name="city"
               label="Sted*"
               validators={{ required: "Hviken by bor du i?" }}
+              rounded="rounded-r-project"
             />
           </div>
         </div>
         <ControlledPhoneNumberInput dialCodeName="dialCode" phoneName="phone" />
-        <ControlledToggle
-          name="createAccount"
-          label="Lagre infoen min til neste gang"
-          checked
-        />
+
+        {addFieldCompany && (
+          <m.div variants={autoHeightAnimation} initial="hide" animate="show">
+            <ControlledInput name="company" label="Selskap" />
+          </m.div>
+        )}
+        <div className="flex items-center justify-between mt-16">
+          <ControlledToggle
+            name="createAccount"
+            label="Lagre infoen min til neste gang"
+            checked
+            defaultValue={true}
+          />
+          {!addFieldCompany && (
+            <AddFieldButton onClick={handleAddCompany}>
+              Legg til selskap
+            </AddFieldButton>
+          )}
+        </div>
       </div>
     </m.section>
   );
