@@ -4,7 +4,7 @@ import { FormHeading } from "../Typography/FormHeading";
 export const EmailInfo = ({}) => {
   return (
     <section className="mb-56">
-      <FormHeading className="mb-24">Først. Hva er e-posten din?</FormHeading>
+      <FormHeading className="mb-8 md:mb-24">Hva er e-posten din?</FormHeading>
       <div className="flex flex-col">
         <button className="flex justify-end text-paragraph-xsmall text-neutral-500 mb-[-8px]">
           Har du allerede en konto?{" "}

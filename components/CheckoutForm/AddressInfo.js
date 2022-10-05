@@ -28,7 +28,9 @@ export const AddressInfo = () => {
       animate="show"
       className="mb-56"
     >
-      <FormHeading className="mb-24">Hvor skal vi sende varene?</FormHeading>
+      <FormHeading className="mb-8 md:mb-24">
+        Hvor skal vi sende varene?
+      </FormHeading>
       <div className="flex flex-col">
         <ControlledInput
           name="name"
@@ -79,13 +81,15 @@ export const AddressInfo = () => {
             <ControlledInput name="company" label="Selskap" />
           </m.div>
         )}
-        <div className="flex items-center justify-between mt-16">
-          <ControlledToggle
-            name="createAccount"
-            label="Lagre infoen min til neste gang"
-            checked
-            defaultValue={true}
-          />
+        <div className="flex flex-col-reverse md:flex-row md:items-center md:justify-between mt-16">
+          <div className="mt-24 md:mt-0">
+            <ControlledToggle
+              name="createAccount"
+              label="Lagre infoen min til neste gang"
+              checked
+              defaultValue={true}
+            />
+          </div>
           {!addFieldCompany && (
             <AddFieldButton onClick={handleAddCompany}>
               Legg til selskap

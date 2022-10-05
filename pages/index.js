@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 import { AddressInfo } from "../components/CheckoutForm/AddressInfo";
@@ -36,15 +37,30 @@ export default function Home() {
   });
 
   const watch = methods.watch;
+  const setFocus = methods.setFocus;
+  const errors = methods.formState.errors;
 
   const watchEmail = watch("email");
   const watchPhone = watch("phone");
 
   const onSubmit = (data) => {
     const formattedData = serializeCheckoutData(data);
-
+    setFocus("name");
     console.log(formattedData);
   };
+
+  useEffect(() => {
+    console.log("errors", errors);
+    const firstError = Object.keys(errors).reduce((field, a) => {
+      return !!errors[field] ? field : a;
+    }, null);
+
+    console.log("i useEffect. firstError", firstError);
+
+    // if (firstError) {
+    //   setFocus();
+    // }
+  }, [errors, setFocus]);
 
   return (
     <Container c="mt-96">
