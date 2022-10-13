@@ -1,13 +1,13 @@
-import { getAccessToken, initiatePayment } from "../lib/vipps";
+import { getAccessTokenVipps, initiatePaymentVipps } from "../lib/vipps";
 
 function Ragnsan() {
   const onClick = async () => {
-    const accessToken = await getAccessToken();
+    const accessToken = await getAccessTokenVipps();
     console.log(accessToken);
   };
 
   const handleInitiatePayment = async () => {
-    await initiatePayment();
+    await initiatePaymentVipps();
   };
 
   return (
