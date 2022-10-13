@@ -18,6 +18,7 @@ import { UpsellItem } from "../components/LineItem/UpsellItem";
 import { OrderSummary } from "../components/OrderSummary/OrderSummary";
 import { FormHeading } from "../components/Typography/FormHeading";
 import { serializeCheckoutData } from "../lib/helpers";
+import { getAccessTokenVipps, initiatePaymentVipps } from "../lib/vipps";
 
 // TODO Fikse at state håndteres riktig med react hook form med custom components
 // TODO Fikse focus og hover states for inputs
@@ -43,24 +44,46 @@ export default function Home() {
   const watchEmail = watch("email");
   const watchPhone = watch("phone");
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const formattedData = serializeCheckoutData(data);
     setFocus("name");
     console.log(formattedData);
+
+    try {
+      const data = await fetch("/api/shopify/admin/createDraftOrder", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ items: cart, user: data }),
+      });
+
+      const result = await data.json();
+
+      const orderId = result.something;
+      const total = result.something;
+      const phoneNumber = result.something;
+
+      if (result.status === "Success") {
+        // Handle success
+      } else {
+        // Handle error
+      }
+      if (data.payment === "Card") {
+        // Stripe payment
+      }
+      if (data.payment === "Vipps") {
+        // Vipps payment
+        await getAccessTokenVipps();
+        await initiatePaymentVipps(orderId, total, phoneNumber);
+      }
+      if (data.payment === "Klarna") {
+        // Klarna payment
+      }
+    } catch (error) {
+      throw new Error("Query not fetched", error);
+    }
   };
-
-  useEffect(() => {
-    console.log("errors", errors);
-    const firstError = Object.keys(errors).reduce((field, a) => {
-      return !!errors[field] ? field : a;
-    }, null);
-
-    console.log("i useEffect. firstError", firstError);
-
-    // if (firstError) {
-    //   setFocus();
-    // }
-  }, [errors, setFocus]);
 
   return (
     <Container c="mt-96">

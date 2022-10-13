@@ -3,6 +3,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
 import CheckoutForm from "../components/CheckoutForm2";
+import { getAuthKlarna } from "../lib/klarna";
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -13,6 +14,8 @@ const stripePromise = loadStripe(
 
 export default function Petter() {
   const [clientSecret, setClientSecret] = useState("");
+
+  getKlarnaAuth();
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
