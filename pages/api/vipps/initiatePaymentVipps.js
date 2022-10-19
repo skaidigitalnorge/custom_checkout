@@ -21,7 +21,7 @@ export default async function handler(req, res) {
       // callbackPrefix: `${process.env.DOMAIN}/test`,
       // callbackPrefix: `https://example.com/vipps/callbacks-for-payment-update-from-vipps`,
       // callbackPrefix: `/api/vipps/callback`,
-      callbackPrefix: `/callback`,
+      callbackPrefix: `https://custom-checkout-ivory.vercel.app/callback`,
       fallBack: `/ordrebekreftelse/ordre-${orderId || fakeOrderId}`,
       merchantSerialNumber: merchantSerialNumber,
     },
