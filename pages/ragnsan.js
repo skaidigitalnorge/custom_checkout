@@ -7,7 +7,9 @@ function Ragnsan() {
   };
 
   const handleInitiatePayment = async () => {
-    await initiatePaymentVipps("99164412", 3200, "321321");
+    await initiatePaymentVipps("99164412", 3200, "321321").then((response) => {
+      window.open(response.url, "_blank");
+    });
   };
 
   return (

@@ -11,15 +11,17 @@ export default async function handler(req, res) {
   const URL = `https://apitest.vipps.no/ecomm/v2/payments/`;
 
   const totalInCents = total * 100;
-  const fakeOrderId = "2222224";
+  const fakeOrderId = "2222231";
 
   const requestBody = {
     customerInfo: {
       mobileNumber: phoneNumber || "99164412",
     },
     merchantInfo: {
-      callbackPrefix: `${process.env.DOMAIN}/api/vipps/callback`,
-      fallBack: `${process.env.DOMAIN}/ordre-${orderId || fakeOrderId}`,
+      // callbackPrefix: `${process.env.DOMAIN}/test`,
+      // callbackPrefix: `https://example.com/vipps/callbacks-for-payment-update-from-vipps`,
+      callbackPrefix: `/api/vipps/callback`,
+      fallBack: `/ordrebekreftelse/ordre-${orderId || fakeOrderId}`,
       merchantSerialNumber: merchantSerialNumber,
     },
     transaction: {
