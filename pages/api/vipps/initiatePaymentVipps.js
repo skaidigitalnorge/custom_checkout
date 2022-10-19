@@ -11,7 +11,7 @@ export default async function handler(req, res) {
   const URL = `https://apitest.vipps.no/ecomm/v2/payments/`;
 
   const totalInCents = total * 100;
-  const fakeOrderId = "2222231";
+  const randomOrderId = (Math.random() * 1000000000).toFixed(0);
 
   const requestBody = {
     customerInfo: {
@@ -22,12 +22,12 @@ export default async function handler(req, res) {
       // callbackPrefix: `https://example.com/vipps/callbacks-for-payment-update-from-vipps`,
       // callbackPrefix: `/api/vipps/callback`,
       callbackPrefix: `https://custom-checkout-ivory.vercel.app/api/vipps/callback`,
-      fallBack: `/ordrebekreftelse/ordre-${orderId || fakeOrderId}`,
+      fallBack: `/ordrebekreftelse/ordre-${orderId || randomOrderId}`,
       merchantSerialNumber: merchantSerialNumber,
     },
     transaction: {
       amount: totalInCents || 6900,
-      orderId: orderId || fakeOrderId,
+      orderId: orderId || randomOrderId,
       transactionText: "Dette er en ordre lagd fra Ragnsan sin PC",
       skipLandingPage: false,
     },
