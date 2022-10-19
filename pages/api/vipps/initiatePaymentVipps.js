@@ -20,7 +20,8 @@ export default async function handler(req, res) {
     merchantInfo: {
       // callbackPrefix: `${process.env.DOMAIN}/test`,
       // callbackPrefix: `https://example.com/vipps/callbacks-for-payment-update-from-vipps`,
-      callbackPrefix: `/api/vipps/callback`,
+      // callbackPrefix: `/api/vipps/callback`,
+      callbackPrefix: `/callback`,
       fallBack: `/ordrebekreftelse/ordre-${orderId || fakeOrderId}`,
       merchantSerialNumber: merchantSerialNumber,
     },
