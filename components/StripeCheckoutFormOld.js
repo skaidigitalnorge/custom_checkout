@@ -9,7 +9,7 @@ import {
   CardNumberElement,
 } from "@stripe/react-stripe-js";
 
-export default function CheckoutForm() {
+export default function StripeCheckoutFormOld() {
   const stripe = useStripe();
   const elements = useElements();
 

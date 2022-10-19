@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-
-import CheckoutForm from "../components/CheckoutForm2";
+import { Elements, PaymentElement } from "@stripe/react-stripe-js";
+import StripeCheckoutFormOld from "../components/StripeCheckoutFormOld";
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -15,7 +14,6 @@ export default function Petter() {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
     fetch("/api/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -25,21 +23,29 @@ export default function Petter() {
       .then((data) => setClientSecret(data.clientSecret));
   }, []);
 
-  const appearance = {
-    theme: "stripe",
-  };
   const options = {
     clientSecret,
     appearance,
+    fonts,
   };
 
   return (
-    <div className="App">
+    <div className="">
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
+          <StripeCheckoutFormOld />
         </Elements>
       )}
     </div>
   );
 }
+
+const appearance = {
+  theme: "stripe",
+  labels: "floating",
+};
+const fonts = {
+  family: "Inter",
+  src: "/public/fonts/inter-v12-latin-regular.woff2",
+  weight: 400,
+};

@@ -1,6 +1,7 @@
 import { AnimatePresence, domAnimation } from "framer-motion";
 import { useFormContext } from "react-hook-form";
 import { GetPaymentProviderIcon } from "../../lib/getPaymentProviderIcon";
+import { CardPaymentForm } from "../../lib/stripe/CardPaymentForm";
 import { ControlledRadioButton } from "../FormFields/ControlledRadioButton";
 import { InputCreditCard } from "../FormFields/InputCreditCard";
 
@@ -33,7 +34,9 @@ export const PaymentInfo = ({}) => {
         >
           <AnimatePresence features={domAnimation}>
             {watchPayment === "card" && (
-              <InputCreditCard isActive={watchPayment === "card"} />
+              <div className="my-24">
+                <CardPaymentForm />
+              </div>
             )}
           </AnimatePresence>
         </ControlledRadioButton>
