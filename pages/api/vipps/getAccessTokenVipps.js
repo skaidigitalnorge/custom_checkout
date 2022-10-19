@@ -11,7 +11,8 @@ export default async function handler(req, res) {
       headers: {
         client_id: clientId,
         client_secret: clientSecret,
-        "Ocp-Apim-Subscription-Key": subscriptionKey,
+        "Ocp-Apim-Subscription-Key":
+          process.env.NEXT_PUBLIC_VIPPS_SUBSCRIPTION_KEY_PRIMARY,
         "Content-Type": "application/x-www-form-urlencoded",
       },
     });
